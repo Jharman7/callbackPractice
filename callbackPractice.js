@@ -1,16 +1,16 @@
 /* In this repo your job is to write functions to make each function call work properly.
-Below is a sample problem 
+Below is a sample problem
 
   //code here for sayHi
 
    sayHi('Hi Katie', function(thingToSay){
       alert(thingToSay);
    });
-   
 
-and what you should write is the sayHi function that makes the code above work, 
-    
-    
+
+and what you should write is the sayHi function that makes the code above work,
+
+
    var sayHi = function(str, cb){
     cb(str);
    }
@@ -18,15 +18,17 @@ and what you should write is the sayHi function that makes the code above work,
    sayHi('Hi Katie', function(thingToSay){
       alert(thingToSay); //should alert ('Hi Katie')'
    });
-    
-    
+
+
 */
 
 
 
   //Code Here for first
-  
 
+function first (arr, fn) {
+  fn(arr[0]);
+}
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
   console.log('The first name in names is ' + firstName)
@@ -38,7 +40,9 @@ first(names, function(firstName){
 
 
 
-
+function last (arr, fn) {
+  fn(arr[arr.length-1]);
+}
   //Code Here for last
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -58,7 +62,9 @@ last(names, function(lastName){
 
 
   //Code Here for multiply
-
+function multiply(a,b,fn) {
+  fn(a*b);
+}
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
 })
@@ -74,6 +80,13 @@ multiply(4, 3, function(answer){
 
 
   //Code Here for contains
+function contains (arr, value, fn) {
+  var flag = true;
+  if (arr.indexOf(value) === -1) {
+    flag = false;
+  }
+  fn(flag);
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 contains(names, 'Colt', function(result){
@@ -91,7 +104,15 @@ contains(names, 'Colt', function(result){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
+function uniq (arr, fn) {
+  var newArr = [];
+  for (var i = 0; i < arr.length; i++) {
+    if ( newArr.indexOf(arr[i])===-1) {
+      newArr.push(arr[i]);
+    }
+  }
+  fn(newArr);
+}
 
     //Code Here for uniq
 
@@ -108,7 +129,11 @@ uniq(names, function(uniqArr){
 
 
 
-
+function each (arr, fn) {
+  for (var i = 0; i < arr.length; i++) {
+    fn(arr[i],i);
+  }
+}
     //Code Here for each
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -124,7 +149,13 @@ each(names, function(item, indice){
 
 
 
-
+function getUserById (arr,id,fn) {
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i].id === id) {
+      fn(arr[i]);
+    }
+  }
+}
 
  //code here for getUserById
 
@@ -150,5 +181,5 @@ var users = [
 ];
 
 getUserById(users, '16t', function(user){
-  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address); 
+  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address);
 });
